@@ -25,6 +25,15 @@ try:
     # Get database path
     db_path = load_database()
     
+    # Add notice about SQLite vs MySQL
+    st.info("""
+        ⚠️ **Note to Students**: 
+        - This demo uses SQLite for cloud compatibility
+        - Some SQL syntax might differ from MySQL
+        - For full MySQL functionality, please install MySQL locally on your machine
+        - Refer to MySQL documentation for exact syntax in your local setup
+    """)
+    
     # Create a text area for SQL query input
     query = st.text_area("Enter your SQL query:", height=150)
 
@@ -64,6 +73,14 @@ try:
     for query_name, query_text in example_queries.items():
         if st.sidebar.button(query_name):
             st.text_area("Enter your SQL query:", value=query_text, height=150)
+
+    # Add footer with attribution
+    st.markdown("""
+    ---
+    Made with ❤️ by Amlan for GripData Analytics
+    
+    [GitHub](https://github.com/amlanacharya) | [LinkedIn](https://www.linkedin.com/in/amlan-acharya/)
+    """)
 
 except Exception as e:
     st.error(f"Error connecting to database: {str(e)}")
